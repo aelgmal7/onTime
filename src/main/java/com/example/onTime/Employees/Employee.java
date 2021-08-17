@@ -31,8 +31,7 @@ public class Employee {
     private Long password;
     private Integer totalPoints;
     private Integer totalAttendanceDays;
-    @OneToMany(mappedBy = "employee")
-    private List<DailyRecord> dailyRecord;
+
 
 
 }

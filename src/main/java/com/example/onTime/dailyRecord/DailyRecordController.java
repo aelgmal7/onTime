@@ -20,20 +20,25 @@ public class DailyRecordController {
 
     @Autowired
     private DailyRecordService dailyRecordService;
+    @Autowired
+    private EmployeeService employeeService;
     private DailyRecord d = DailyRecord.builder()
 
         .build();
-
+//get all records
     @GetMapping
     private DailyRecord dailyRecord(){
         return d;
     }
+
     @PostMapping("/r")
-    public void setNewDailyRecord(
+    public String  setNewDailyRecord(
            @Param("id") Long id
     ){
 
-        dailyRecordService.addNewDailyRecord(id);
+       String message= dailyRecordService.addNewDailyRecord(id);
+        //employeeService.increaseTotalAttendance(id);
+        return message;
     }
 
 }
