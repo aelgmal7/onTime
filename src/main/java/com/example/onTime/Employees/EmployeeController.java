@@ -1,27 +1,38 @@
 package com.example.onTime.Employees;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
 
 @RestController
 public class EmployeeController {
-    public EmployeeController(EmployeeRepository employeeRepository) {
-        this.employeeRepository = employeeRepository;
+    public EmployeeController(EmployeeService employeeService) {
+        this.employeeService = employeeService;
     }
 
     @Autowired
-    private EmployeeRepository employeeRepository;
+        private EmployeeService employeeService;
+
 
     Employee e = Employee.builder()
             .employeeId(1L)
             .password(565L)
             .build();
     @GetMapping
-    public Employee uuid(){
-      return e;
+    public UUID uuid(){
+        UUID uuid =  UUID.randomUUID();
+      return uuid;
 
+    }
+
+    @PostMapping("/addNewE")
+    public void setNewEmployee(@RequestBody Employee e){
+    employeeService.addNewEmployee(e);
+
+    }
+    @GetMapping("/{id}")
+    public Employee getOneEmployee(@PathVariable("id") Long id){
+        return employeeService.findEmployeeById(id);
     }
 }
