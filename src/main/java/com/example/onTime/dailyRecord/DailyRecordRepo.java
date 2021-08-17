@@ -13,5 +13,6 @@ import java.util.Optional;
 public interface DailyRecordRepo extends JpaRepository<DailyRecord,Long> {
      Optional<DailyRecord> findDailyRecordByDate(LocalDate d);
      Optional<DailyRecord> findByDateAndEmployee(LocalDate d, Employee employee);
+     List<DailyRecord> findAllByDate(LocalDate localDate);
 
 }

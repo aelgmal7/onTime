@@ -10,6 +10,7 @@ import java.sql.Time;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Date;
+import java.util.List;
 
 @RestController
 @RequestMapping("/record")
@@ -17,18 +18,21 @@ public class DailyRecordController {
     public DailyRecordController(DailyRecordService dailyRecordService) {
         this.dailyRecordService = dailyRecordService;
     }
-
+    //imports
     @Autowired
     private DailyRecordService dailyRecordService;
     @Autowired
     private EmployeeService employeeService;
-    private DailyRecord d = DailyRecord.builder()
-
-        .build();
 //get all records
     @GetMapping
-    private DailyRecord dailyRecord(){
-        return d;
+    private List<DailyRecord> dailyRecord(){
+
+        return dailyRecordService.getAllRecords();
+    }
+    //get records by date
+    @GetMapping("bydate/{date}")
+    public List<DailyRecord> getAllDate(@PathVariable("date") String s){
+        return dailyRecordService.getAllByDate(s);
     }
 
     @PostMapping("/r")

@@ -10,10 +10,11 @@ import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.List;
 
 @Service
 public class DailyRecordService {
-
+    //imports
     @Autowired
     private DailyRecordRepo dailyRecordRepo;
     @Autowired
@@ -26,20 +27,19 @@ public class DailyRecordService {
         this.employeeRepository = employeeRepository;
     }
     /*
-    * main functions*/
+    * main functions
+    * */
 
     //add daily record;
-    public String   addNewDailyRecord(
+    public String addNewDailyRecord(
             Long employeeId
             ) {
         Employee employee = findEmployeeById(employeeId);
 
         if (dailyRecordRepo.findByDateAndEmployee(LocalDate.now(),employee).isPresent()) {
-            System.out.println("check out");
             checkOut(employee);
             return "check out ";
         } else {
-            System.out.println("check in");
             employeeService.increaseTotalAttendance(employeeId);
 
             System.out.println("employee = " + employee);
@@ -47,6 +47,14 @@ public class DailyRecordService {
             dailyRecordRepo.save(r);
             return "check in ";
         }
+    }
+    //get all records
+    public List<DailyRecord> getAllRecords(){
+        return dailyRecordRepo.findAll();
+    }
+    public List<DailyRecord> getAllByDate(String s){
+//        System.out.println(LocalDate.parse("2021/08/17"));
+        return dailyRecordRepo.findAllByDate(LocalDate.parse(s));
     }
 
 

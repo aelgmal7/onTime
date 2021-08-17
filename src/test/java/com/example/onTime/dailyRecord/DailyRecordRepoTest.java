@@ -36,6 +36,11 @@ class DailyRecordRepoTest {
                 .build();
         dailyRecordRepo.save(r);
     }
+    @Test
+    public void s(){
+        LocalDate s = LocalDate.parse("2018-12-27");
+        System.out.println("s = " + s);
+    }
 
 //    @Test
 //    public void  ss(){
