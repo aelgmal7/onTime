@@ -1,6 +1,8 @@
 package com.example.onTime.Employees;
 
+import com.example.onTime.dailyRecord.DailyRecord;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -42,4 +44,6 @@ public class EmployeeController {
     public List<Employee> returnAllEmployees(){
         return employeeService.getAllEmployees();
     }
+
+
 }

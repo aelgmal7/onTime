@@ -2,6 +2,7 @@ package com.example.onTime.dailyRecord;
 
 import com.example.onTime.Employees.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.*;
 
@@ -44,5 +45,11 @@ public class DailyRecordController {
         //employeeService.increaseTotalAttendance(id);
         return message;
     }
+    // test pagination
+    @GetMapping("p")
+    public Page<DailyRecord> getone(){
+        return dailyRecordService.getDailyByDate();
+    }
+
 
 }

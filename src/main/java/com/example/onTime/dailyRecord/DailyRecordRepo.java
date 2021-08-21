@@ -5,6 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import java.awt.print.Pageable;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
@@ -14,5 +15,6 @@ public interface DailyRecordRepo extends JpaRepository<DailyRecord,Long> {
      Optional<DailyRecord> findDailyRecordByDate(LocalDate d);
      Optional<DailyRecord> findByDateAndEmployee(LocalDate d, Employee employee);
      List<DailyRecord> findAllByDate(LocalDate localDate);
+//     List<DailyRecord> findAllByDate(LocalDate d , Pageable pageable);
 
 }

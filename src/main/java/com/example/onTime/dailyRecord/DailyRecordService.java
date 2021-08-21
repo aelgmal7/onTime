@@ -4,6 +4,9 @@ import com.example.onTime.Employees.Employee;
 import com.example.onTime.Employees.EmployeeRepository;
 import com.example.onTime.Employees.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.stereotype.Service;
 
@@ -55,6 +58,12 @@ public class DailyRecordService {
     public List<DailyRecord> getAllByDate(String s){
 //        System.out.println(LocalDate.parse("2021/08/17"));
         return dailyRecordRepo.findAllByDate(LocalDate.parse(s));
+    }
+    public Page<DailyRecord> getDailyByDate(){
+       Pageable paging = PageRequest.of(0,2);
+
+       Page<DailyRecord> findFirstItem =dailyRecordRepo.findAll(paging);
+       return findFirstItem;
     }
 
 
